@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "438421631890",
+    "project_id": "social-13dab",
+    "storage_bucket": "social-13dab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438421631890:android:757ecea3a4a0183852074b",
+        "android_client_info": {
+          "package_name": "com.hostbala.social"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438421631890-6qqnl311nnttjtpo0e70i886i85e4bb2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hostbala.social",
+            "certificate_hash": "3251dc254f0a77415ffad8523e7503b023b202e1"
+          }
+        },
+        {
+          "client_id": "438421631890-pv4lmj8qd45q6q1luab30qc2rouor2n5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2PBD-T0dvYa6ZNxflgHV9jDTZhu6MQh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438421631890-pv4lmj8qd45q6q1luab30qc2rouor2n5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
