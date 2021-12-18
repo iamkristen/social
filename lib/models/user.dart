@@ -17,7 +17,7 @@ class User {
     this.photoUrl,
   });
 
-  factory User.fromDocument(DocumentSnapshot doc) {
+  factory User.fromDocument(doc) {
     return User(
       id: doc['id'],
       userName: doc['userName'],

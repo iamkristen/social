@@ -9,7 +9,6 @@ import 'package:social/pages/activity_feed.dart';
 import 'package:social/pages/create_account.dart';
 import 'package:social/pages/profile.dart';
 import 'package:social/pages/search.dart';
-import 'package:social/pages/timeline.dart';
 import 'package:social/pages/upload.dart';
 
 class Home extends StatefulWidget {
@@ -20,7 +19,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  GlobalKey _scaffoldKey = GlobalKey<ScaffoldState>();
   bool isAuth = false;
   String gLogo = "assets/images/Glogo.svg";
   final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -46,8 +44,8 @@ class _HomeState extends State<Home> {
     pageController = PageController();
   }
 
-  void logout() {
-    googleSignIn.signOut();
+  void logout() async {
+    await googleSignIn.signOut();
     setState(() {
       isAuth = false;
     });
@@ -124,7 +122,9 @@ class _HomeState extends State<Home> {
               currentUser: currentUser,
             ),
             Search(),
-            Profile(),
+            Profile(
+              profile: currentUser,
+            ),
           ],
           controller: pageController,
           onPageChanged: onPageChanged,

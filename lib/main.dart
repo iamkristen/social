@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:social/constant/colors.dart';
-import 'package:social/pages/create_account.dart';
 import 'package:social/pages/home.dart';
 
 void main() async {

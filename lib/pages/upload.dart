@@ -5,13 +5,14 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:social/constant/colors.dart';
 import 'package:social/models/user.dart';
 import 'package:social/widgets/custom_button.dart';
 import 'package:social/widgets/progress.dart';
-import 'package:image/image.dart' as im;
 import 'package:uuid/uuid.dart';
 
 class Upload extends StatefulWidget {
@@ -209,9 +210,7 @@ class _UploadState extends State<Upload> {
                       Size(MediaQuery.of(context).size.width * 0.7, 50),
                   minimumSize:
                       Size(MediaQuery.of(context).size.width * 0.5, 40)),
-              onPressed: () {
-                print("tapped");
-              },
+              onPressed: () => getCurrentLocation(),
               label: const Text("Use Current Location"),
             ),
           )
@@ -276,6 +275,34 @@ class _UploadState extends State<Upload> {
         ),
       ],
     );
+  }
+
+  getCurrentLocation() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      Fluttertoast.showToast(msg: "Please ! Keep your location ON");
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.denied) {
+      Fluttertoast.showToast(msg: "Location permission is denied");
+    }
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    List<Placemark> placemark =
+        await placemarkFromCoordinates(position.altitude, position.longitude);
+    Placemark place = placemark[0];
+    print(placemark);
+    String address = '${place.locality}(${place.postalCode}), ${place.country}';
+
+    setState(() {
+      locationController.text = address == '' ? "Location Not Found" : address;
+    });
   }
 
   @override
