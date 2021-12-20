@@ -219,11 +219,16 @@ class _UploadState extends State<Upload> {
     );
   }
 
-  buildSplashScreen() {
+  buildSplashScreen(Orientation orientation) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SvgPicture.asset('assets/images/upload_image.svg'),
+        SvgPicture.asset(
+          'assets/images/upload_image.svg',
+          height: orientation == Orientation.portrait
+              ? MediaQuery.of(context).size.height * 0.4
+              : MediaQuery.of(context).size.height * 0.5,
+        ),
         GestureDetector(
           onTap: () {
             showDialog(
@@ -297,7 +302,6 @@ class _UploadState extends State<Upload> {
     List<Placemark> placemark =
         await placemarkFromCoordinates(position.altitude, position.longitude);
     Placemark place = placemark[0];
-    print(placemark);
     String address = '${place.locality}(${place.postalCode}), ${place.country}';
 
     setState(() {
@@ -307,6 +311,7 @@ class _UploadState extends State<Upload> {
 
   @override
   Widget build(BuildContext context) {
-    return file == null ? buildSplashScreen() : buildUploadScreen();
+    final Orientation orientation = MediaQuery.of(context).orientation;
+    return file == null ? buildSplashScreen(orientation) : buildUploadScreen();
   }
 }
