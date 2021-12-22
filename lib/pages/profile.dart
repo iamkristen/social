@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:social/constant/colors.dart';
 import 'package:social/models/user.dart';
-import 'package:social/pages/comments.dart';
 import 'package:social/pages/edit_profile.dart';
 import 'package:social/widgets/custom_button.dart';
 import 'package:social/widgets/custom_image.dart';
@@ -192,7 +191,7 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        buildCountColumn("Posts", 0),
+                        buildCountColumn("Posts", posts.length),
                         buildCountColumn("Followers", 0),
                         buildCountColumn("Following", 0),
                       ],

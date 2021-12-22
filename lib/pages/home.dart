@@ -9,6 +9,7 @@ import 'package:social/pages/activity_feed.dart';
 import 'package:social/pages/create_account.dart';
 import 'package:social/pages/profile.dart';
 import 'package:social/pages/search.dart';
+import 'package:social/pages/timeline.dart';
 import 'package:social/pages/upload.dart';
 
 class Home extends StatefulWidget {
@@ -112,11 +113,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: PageView(
           children: [
-            // Timeline(),
-            ElevatedButton(
-              onPressed: () => logout(),
-              child: Text("logout"),
-            ),
+            Timeline(),
             ActivityFeed(),
             Upload(
               currentUser: currentUser,
